@@ -1,13 +1,14 @@
+var numberOfGuesses = 2;
+var usedGuesses = 0;
+var computerNumber = computerNum();
+
 function computerNum () {
-    var number = Math.ceil(Math.random()*100);
-    console.log("The computerNum is " + number);
-    return number;
+    return Math.ceil(Math.random()*100);
 }
 
 function userNum () {
     var number = prompt("Enter a whole number between 1 and 100.");
     if (number >= 1 && number <= 100 && number % 1 === 0) {
-        console.log("The userNum is " + number);
         return number;
     } else {
         return userNum();
@@ -26,13 +27,19 @@ function hotOrCold (userNum, computerNum) {
         return true;
     }
 }
-var numberOfGuesses = 5;
-var userGuessArray = [];
 
-for (i = 0; i < numberOfGuesses; i++) {
-    userGuessArray[i] = userNum();
+function game() {
+    if (numberOfGuesses === usedGuesses) {
+        console.log("game over! out of guesses");
+        return false;
+    }
+    if (hotOrCold(userNum(),computerNumber) === true) {
+        console.log("game over! you guessed right");
+    } else {
+        usedGuesses += 1;
+        return game();
+    }
 }
-console.log(userGuessArray);
 
-
-//http://www.codecademy.com/courses/javascript-beginner-en-Bthev-mskY8/1/5?curriculum_id=506324b3a7dffd00020bf661
+console.log(computerNumber);
+game();
