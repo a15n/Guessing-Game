@@ -7,7 +7,7 @@ function computerNum () {
 }
 
 function userNum () {
-    var number = prompt("Enter a whole number between 1 and 100.");
+    var number = document.getElementById("userGuess").value;
     if (number >= 1 && number <= 100 && number % 1 === 0) {
         return number;
     } else {
@@ -27,19 +27,3 @@ function hotOrCold (userNum, computerNum) {
         return true;
     }
 }
-
-function game() {
-    if (numberOfGuesses === usedGuesses) {
-        console.log("game over! out of guesses");
-        return false;
-    }
-    if (hotOrCold(userNum(),computerNumber) === true) {
-        console.log("game over! you guessed right");
-    } else {
-        usedGuesses += 1;
-        return game();
-    }
-}
-
-console.log(computerNumber);
-game();
