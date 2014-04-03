@@ -9,10 +9,12 @@
 <body>
 	<h1>Guessing Game</h1>
 	<h4>-designed by Andrew Scheuermann</h4>
+	<p>This is a guessing game in which you have 6 chances to guess the right number.<br>Hints will cost you two guesses!<br>With each guess you will be told if you are "too high" or "too low" and how hot or cold you are....<br>-COLD: 25 or more numbers away<br>-LUKEWARM: 12 - 24 numbers away<br>-HOT: 6 - 11 numbers away<br>-BOILING: 1 - 5 numbers away</p>
 	<div class="container">
 		<input type="text" name="userGuess" placeholder="Input number from 1-100">
-		<button type="button" >Submit</button>
+		<button type="button" id="submit">Submit</button>
+		<button type="button" id="hint">Hint</button>
+		<button type="button" id="restart">Restart</button>
 		<div class="feedback"></div>
 	</div>
-	<div>
 </body>
