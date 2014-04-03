@@ -1,29 +1,31 @@
-var numberOfGuesses = 2;
+var numberOfGuesses = 5;
 var usedGuesses = 0;
-var computerNumber = computerNum();
-
-function computerNum () {
-    return Math.ceil(Math.random()*100);
-}
+var computerNumber = Math.ceil(Math.random()*100);
 
 function userNum () {
-    var number = document.getElementById("userGuess").value;
+    var number = $('input[name=userGuess]').val();
     if (number >= 1 && number <= 100 && number % 1 === 0) {
         return number;
     } else {
-        return userNum();
+        alert("Try again, fool!");
     }
 }
 
 function hotOrCold (userNum, computerNum) {
     if (userNum > computerNum) {
-        console.log("too high");
+        console.log(userNum + " is too high");
         return false;
     } else if (userNum < computerNum) {
-        console.log("too low");
+        console.log(userNum + " is too low");
         return false;
     } else {
-        console.log("right number");
+        console.log(userNum + " is the right number!");
         return true;
     }
 }
+
+$(document).ready(function(){
+    $(document).on('click', 'button', function() {
+        hotOrCold(userNum(),computerNumber);
+    });
+})
