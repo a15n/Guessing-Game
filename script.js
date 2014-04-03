@@ -1,6 +1,4 @@
-var numberOfGuesses = 5;
-var usedGuesses = 0;
-var computerNumber = Math.ceil(Math.random()*100);
+var numberOfGuesses = 6, usedGuesses = 0, computerNumber = Math.ceil(Math.random()*100);
 
 function userNum () {
     var number = $('input[name=userGuess]').val();
@@ -8,24 +6,46 @@ function userNum () {
         return number;
     } else {
         alert("Try again, fool!");
+        return false;
     }
 }
 
 function hotOrCold (userNum, computerNum) {
-    if (userNum > computerNum) {
-        console.log(userNum + " is too high");
-        return false;
-    } else if (userNum < computerNum) {
-        console.log(userNum + " is too low");
-        return false;
+    var distance = Math.abs(userNum - computerNum);
+    if (distance >= 25){
+        return (" and you are COLD!");
+    } else if (distance >= 12) {
+        return (" and you are LUKEWARM!");
+    } else if (distance >= 6) {
+        return (" and you are HOT!");
+    } else if (distance >= 1) {
+        return (" and you are BOILING!");
     } else {
-        console.log(userNum + " is the right number!");
-        return true;
+        return (" and you are COOKED!");
     }
 }
 
+function game (userNum, computerNum) {
+    if (userNum === false) {
+        return false
+    } else if (userNum > computerNum) {
+        return (userNum + " is too high");
+    } else if (userNum < computerNum) {
+        return (userNum + " is too low");
+    } else {
+        return (userNum + " is the right number!");
+    }
+}
+
+
 $(document).ready(function(){
     $(document).on('click', 'button', function() {
-        hotOrCold(userNum(),computerNumber);
+        var result = game(userNum(),computerNumber);
+        var hotness = hotOrCold(userNum(),computerNumber);
+        console.log(hotness);
+        $('.feedback').append('<p>' + result + hotness + '</p>'); //add in hotOrCold indicator
     });
 })
+
+//Add in a description about what hotOrCold means in layman's terms
+//remove the hot or cold indicator and add in an automatically updating visual assistant
